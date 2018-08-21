@@ -6,8 +6,8 @@ pragma solidity ^0.4.24;
 // Deployed to : 0x91556f2CB7367b3047347a29C1FC854b26A580f4
 // Symbol      : CGC
 // Name        : Crypto Global Capital
-// Total supply: 15,000,000,000
-// Decimals    : 18
+// Total supply: 150,000,000,000
+// Decimals    : 10
 // ----------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------
@@ -78,7 +78,6 @@ contract ApproveAndCallFallBack {
 contract Owned {
   address public owner;
 
-
   event OwnershipRenounced(address indexed previousOwner);
   event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
@@ -128,8 +127,8 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
   constructor() public {
     symbol = "CGC";
     name = "Crypto Global Capital";
-    decimals = 18;
-    _totalSupply = 15000000000000000000000000000;
+    decimals = 10;
+    _totalSupply = 1500000000000000000000;
     balances[0x91556f2CB7367b3047347a29C1FC854b26A580f4] = _totalSupply;
     emit Transfer(address(0), 0x91556f2CB7367b3047347a29C1FC854b26A580f4, _totalSupply);
   }
