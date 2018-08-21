@@ -20,20 +20,20 @@ contract SafeMath {
     }
 
     uint256 c = _a * _b;
-    require(c / _a == _b);
+    require(c / _a == _b, "safeMul error");
 
     return c;
   }
 
   function safeDiv(uint256 _a, uint256 _b) internal pure returns (uint256) {
-    require(_b > 0);
+    require(_b > 0, "safeDiv error");
     uint256 c = _a / _b;
 
     return c;
   }
 
   function safeSub(uint256 _a, uint256 _b) internal pure returns (uint256) {
-    require(_b <= _a);
+    require(_b <= _a, "safeSub error");
     uint256 c = _a - _b;
 
     return c;
@@ -41,7 +41,7 @@ contract SafeMath {
 
   function safeAdd(uint256 _a, uint256 _b) internal pure returns (uint256) {
     uint256 c = _a + _b;
-    require(c >= _a);
+    require(c >= _a, "safeAdd error");
 
     return c;
   }
@@ -86,7 +86,7 @@ contract Owned {
   }
 
   modifier onlyOwner() {
-    require(msg.sender == owner);
+    require(msg.sender == owner, "not owner");
     _;
   }
 
@@ -100,7 +100,7 @@ contract Owned {
   }
 
   function _transferOwnership(address _newOwner) internal {
-    require(_newOwner != address(0));
+    require(_newOwner != address(0), "address is empty");
     emit OwnershipTransferred(owner, _newOwner);
     owner = _newOwner;
   }
@@ -153,8 +153,8 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
   // - 0 value transfers are allowed
   // ------------------------------------------------------------------------
   function transfer(address to, uint256 tokens) public returns (bool success) {
-    require(tokens <= balances[msg.sender]);
-    require(to != address(0));
+    require(tokens <= balances[msg.sender], "Owner's account must have sufficient balance to transfer");
+    require(to != address(0), "recipient address is empty");
     
     balances[msg.sender] = safeSub(balances[msg.sender], tokens);
     balances[to] = safeAdd(balances[to], tokens);
@@ -186,9 +186,9 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
   // - 0 value transfers are allowed
   // ------------------------------------------------------------------------
   function transferFrom(address from, address to, uint256 tokens) public returns (bool success) {
-    require(tokens <= balances[from]);
-    require(tokens <= allowed[from][msg.sender]);
-    require(to != address(0));
+    require(tokens <= balances[from], "From account must have sufficient balance to transfer");
+    require(tokens <= allowed[from][msg.sender], "Spender must have sufficient allowance to transfer");
+    require(to != address(0), "recipient address is empty");
     
     balances[from] = safeSub(balances[from], tokens);
     allowed[from][msg.sender] = safeSub(allowed[from][msg.sender], tokens);
@@ -221,7 +221,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
   // Don't accept ETH
   // ------------------------------------------------------------------------
   function () public payable {
-    revert();
+    revert("Don't accept ETH");
   }
 
   // ------------------------------------------------------------------------
