@@ -168,7 +168,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
   //
   // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md
   // recommends that there are no checks for the approval double-spend attack
-  // as this should be implemented in user interfaces 
+  // as this should be implemented in user interfaces
   // ------------------------------------------------------------------------
   function approve(address spender, uint256 tokens) public returns (bool success) {
     allowed[msg.sender][spender] = tokens;
