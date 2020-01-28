@@ -272,7 +272,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
     // ------------------------------------------------------------------------
     // Don't accept ETH
     // ------------------------------------------------------------------------
-    function() public payable {
+    fallback() public payable {
         revert("Don't accept ETH");
     }
 
