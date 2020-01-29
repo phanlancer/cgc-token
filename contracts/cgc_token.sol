@@ -255,7 +255,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
     // from the token owner's account. The spender contract function
     // receiveApproval(...) is then executed
     // ------------------------------------------------------------------------
-    function approveAndCall(address spender, uint256 tokens, bytes data)
+    function approveAndCall(address spender, uint256 tokens, bytes memory data)
         public
         returns (bool success)
     {
@@ -264,7 +264,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
         ApproveAndCallFallBack(spender).receiveApproval(
             msg.sender,
             tokens,
-            this,
+            address(this),
             data
         );
         return true;
