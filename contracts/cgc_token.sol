@@ -73,6 +73,7 @@ contract ERC20Interface {
         address indexed tokenOwner,
         address indexed spender,
         uint256 tokens
+        
     );
 }
 
@@ -84,7 +85,7 @@ contract ApproveAndCallFallBack {
         address from,
         uint256 tokens,
         address token,
-        bytes data
+        bytes memory data
     ) public;
 }
 
