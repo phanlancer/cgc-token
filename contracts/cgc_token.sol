@@ -155,7 +155,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
     // ------------------------------------------------------------------------
     // Total supply
     // ------------------------------------------------------------------------
-    function totalSupply() public view returns (uint256) {
+    function totalSupply() public view override returns (uint256) {
         return _totalSupply - balances[address(0)];
     }
 
