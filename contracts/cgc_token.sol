@@ -178,6 +178,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
     // ------------------------------------------------------------------------
     function transfer(address to, uint256 tokens)
         public
+        override
         returns (bool success)
     {
         require(
