@@ -165,6 +165,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
     function balanceOf(address tokenOwner)
         public
         view
+        override
         returns (uint256 balance)
     {
         return balances[tokenOwner];
