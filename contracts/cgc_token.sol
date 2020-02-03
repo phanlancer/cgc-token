@@ -203,6 +203,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
     // ------------------------------------------------------------------------
     function approve(address spender, uint256 tokens)
         public
+        override
         returns (bool success)
     {
         allowed[msg.sender][spender] = tokens;
