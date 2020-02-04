@@ -249,6 +249,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
     function allowance(address tokenOwner, address spender)
         public
         view
+        override
         returns (uint256 remaining)
     {
         return allowed[tokenOwner][spender];
