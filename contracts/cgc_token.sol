@@ -60,7 +60,9 @@ interface ERC20Interface {
         external
         view
         returns (uint256 remaining);
-    function transfer(address to, uint256 tokens) external returns (bool success);
+    function transfer(address to, uint256 tokens)
+        external
+        returns (bool success);
     function approve(address spender, uint256 tokens)
         external
         returns (bool success);
@@ -73,7 +75,6 @@ interface ERC20Interface {
         address indexed tokenOwner,
         address indexed spender,
         uint256 tokens
-        
     );
 }
 
@@ -278,7 +279,7 @@ contract CGCToken is ERC20Interface, Owned, SafeMath {
     // ------------------------------------------------------------------------
     // Don't accept ETH
     // ------------------------------------------------------------------------
-    fallback() public payable {
+    receive() external payable {
         revert("Don't accept ETH");
     }
 
